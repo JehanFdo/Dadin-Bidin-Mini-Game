@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body{
+            background-color: black;
+            z-index: -1;
+        }
+        @font-face {
+            font-family: "apexpura012";
+            src: url(fonts/apexpura012.ttf);
+        }
+        @font-face {
+            font-family: "apexpura015";
+            src: url(fonts/apex-apura-015.ttf);
+        }
+        @font-face {
+            font-family: "DL-AraliyaShatter";
+            src: url(fonts/DL-AraliyaShatter.ttf);
+        }
+         #myCanvas{
+            width: 869px;
+            height: 677px;
+            position: absolute;
+            margin: auto;
+            left: 50px;
+             right: 50px;
+             top: 20px;
+             bottom: 20px;
+             border-radius: 50px;
+             background-image: url(images/logoNew.png);
+
+        }
+        #button{
+            background-image: url(images/buttongahamuda12.png);
+            width: 300px;
+            height: 80px;
+            position: absolute;
+            top: 510px;
+            left: 290px;
+            background-repeat: no-repeat;
+
+        }
+        #button:hover{
+            background-image: url(images/buttongahamuda1.png);
+            width: 280px;
+            height: 80px;
+            position: absolute;
+            top: 510px;
+            left: 290px;
+            background-repeat: no-repeat;
+        }
+        #myCanvasPoddakInna{
+            display: none;
+            width: 869px;
+            height: 677px;
+            position: absolute;
+            margin: auto;
+            left: 50px;
+            right: 50px;
+            top: 20px;
+            bottom: 20px;
+            border-radius: 50px;
+            z-index: -1;
+            /*background-image: url(images/GameCanvs.png);*/
+        }
+        #myCanvasGame{
+            display: none;
+            width: 869px;
+            height: 677px;
+            position: absolute;
+            margin: auto;
+            left: 50px;
+            right: 50px;
+            top: 20px;
+            bottom: 20px;
+            border-radius: 50px;
+            background-image: url(images/3.png);
+            z-index: -1;
+            overflow: hidden;
+        }
+        #counting{
+            width: 350px;
+            height: 317px;
+            position: absolute;
+            top: 200px;
+            left: 250px;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+        #catcher{
+            width: 110px;
+            height: 140px;
+            position: absolute;
+            top: 430px;
+            left: 300px;
+        }
+        #bomb-1{
+            width: 80px;
+            height: 155px;
+            position: absolute;
+            background: no-repeat;
+            top: -500px;
+            left: 30px;
+
+
+        }
+
+        #bomb-2{
+            width: 80px;
+            height: 155px;
+            position: absolute;
+            background: no-repeat;
+            top: -500px;
+            left: 250px;
+
+        }
+
+        #bomb-3{
+            width: 80px;
+            height: 155px;
+            position: absolute;
+            background: no-repeat;
+            top: -500px;
+            left: 500px;
+
+        }
+
+        #bomb-4{
+            width: 80px;
+            height: 155px;
+            position: absolute;
+            background: no-repeat;
+            top: -500px;
+            left: 760px;
+
+        }
+        #bombCount{
+            width: 869px;
+            height: 85px;
+            left: 0;
+            top: -10px;
+            position: absolute;
+
+        }
+        #score{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            z-index: 2;
+            left: 160px;
+            top: 1px;
+            font-weight: 700;
+            font-family: apexpura015;
+            font-size: 60px;
+            color: #cab192;
+        }
+        #bomba{
+            top: 5px;
+            position: absolute;
+            z-index: 1;
+            width: 252px;
+            height: 84px;
+            left: 20px;
+        }
+        #time{
+            top: 5px;
+            position: absolute;
+            z-index: 1;
+            width: 252px;
+            height: 84px;
+            left: 600px;
+        }
+        #timeScore{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            z-index: 2;
+            left: 160px;
+            top: -1px;
+            font-weight: 700;
+            font-family:apexpura015;
+            font-size: 60px;
+            color: #cab192;
+        }
+        #gameOverCanvas{
+            display: none;
+            width: 869px;
+            height: 677px;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 50px;
+            top: 20px;
+            bottom: 20px;
+            border-radius: 50px;
+            background-image: url(images/gameOver.png);
+            z-index: 1;
+            overflow: hidden;
+        }
+        #restart{
+            background-image: url(images/buttonNawatha.png);
+            width: 300px;
+            height: 80px;
+            position: absolute;
+            top: 510px;
+            left: 290px;
+            background-repeat: no-repeat;
+        }
+        #restart:hover{
+            background-image: url(images/buttonNawatha1.png);
+            width: 280px;
+            height: 80px;
+            position: absolute;
+            top: 510px;
+            left: 290px;
+            background-repeat: no-repeat;
+        }
+        #bombLastScore{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            z-index: 3;
+            left: 350px;
+            top: 260px;
+            font-weight: 800;
+            font-family: apexpura015;
+            font-size: 70px;
+            color: #cab192;
+        }
+        .disBomb{
+            width: 140px;
+            height: 140px;
+            position: absolute;
+            display: none;
+        }
+        .exp{
+            width:200px;
+            height: 200px;
+            position: absolute;
+            display: none;
+
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+        <div id="myCanvas">
+            <div id="button"></div>
+        </div>
+        <div id="myCanvasPoddakInna">
+            <div id="counting">
+
+            </div>
+        </div>
+
+        <div id="myCanvasGame">
+            <audio controls loop id="canvasAudio" preload="auto">
+                <source src="audio/gamePlayMusic.m4a">
+            </audio>
+            <div id="catcher">
+                <img src="images/catcher1.gif" id="imgcatch">
+            </div>
+            <div id="bomb-1" class="bomb" data-bomb="1">
+                <img src="images/BombBlast2.gif" id="bo1">
+            </div>
+            <div id="bomb-2" class="bomb" data-bomb="2">
+                <img src="images/BombBlast2.gif">
+            </div>
+            <div id="bomb-3" class="bomb" data-bomb="3">
+                <img src="images/BombBlast2.gif">
+            </div>
+            <div id="bomb-4" class="bomb" data-bomb="4">
+                <img src="images/BombBlast2.gif">
+            </div>
+
+
+            <div id="bombCount">
+                <img src="images/scoreBar.png">
+                <div id="bomba">
+                    <img src="images/bomba.png">
+                    <span id="score">0</span>
+                </div>
+                <div id="time">
+                    <img src="images/kalaya.png">
+                    <span id="timeScore">20</span>
+                </div>
+
+            </div >
+            <div id="bombDisposed1"  class="disBomb">
+                <audio id="disbm1" preload="auto">
+                    <source src="audio/disposedSound.MP3">
+                </audio>
+                <img src="images/vanishBomb.gif">
+
+            </div>
+            <div id="bombDisposed2"  class="disBomb">
+                <audio id="disbm2" preload="auto">
+                    <source src="audio/disposedSound.MP3">
+                </audio>
+                <img src="images/vanishBomb.gif">
+
+            </div>
+            <div id="bombDisposed3"  class="disBomb">
+                <audio id="disbm3" preload="auto">
+                    <source src="audio/disposedSound.MP3">
+                </audio>
+                <img src="images/vanishBomb.gif">
+
+            </div>
+            <div id="bombDisposed4"  class="disBomb">
+                <audio id="disbm4" preload="auto">
+                    <source src="audio/disposedSound.MP3">
+                </audio>
+                <img src="images/vanishBomb.gif">
+
+            </div>
+
+            <div id="explosion1" class="exp">
+                <audio id="blast1" preload="auto">
+                    <source src="audio/Bomb Explosion.wav">
+                </audio>
+                <img src="images/explosion_1.gif">
+            </div>
+            <div id="explosion2" class="exp">
+                <audio id="blast2" preload="auto">
+                    <source src="audio/Bomb Explosion.wav">
+                </audio>
+                <img src="images/explosion_1.gif">
+            </div>
+            <div id="explosion3" class="exp">
+                <audio id="blast3" preload="auto">
+                    <source src="audio/Bomb Explosion.wav">
+                </audio>
+                <img src="images/explosion_1.gif">
+            </div>
+            <div id="explosion4" class="exp">
+                <audio id="blast4" preload="auto">
+                    <source src="audio/Bomb Explosion.wav">
+                </audio>
+                <img src="images/explosion_1.gif">
+            </div>
+
+
+        <div id="gameOverCanvas">
+                <div id="restart"></div>
+                <span id="bombLastScore">0</span>
+        </div>
+            <audio id="buttonAudio" preload="auto">
+                <source src="audio/beep-29.wav">
+            </audio>
+        </div>
+            
+            
+
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/Controller.js"></script>
+
+</body>
+</html>
